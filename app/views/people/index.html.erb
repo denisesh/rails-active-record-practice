@@ -2,6 +2,8 @@
   <h1>People</h1>
 </div>
 
+<%= params.inspect %>
+
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -13,9 +15,13 @@
       <th>Height in Inches</th>
       <th>Awesome?</th>
       <th>Created At</th>
+      <th>Awesomeness</th>
+      <th>Irish Eyes</th>
   </thead>
   <tbody>
-    <% @people.each do |person| %>
+    <%  awesomeness = @people.order(:awesome == "true") %>
+    <%= irish_eyes = @people.order(:eye_color == "green") %>
+    <% @people.order(:first_name).each do |person| %>
       <tr>
         <td><%= person.id %></td>
         <td><%= person.first_name %></td>
@@ -25,6 +31,8 @@
         <td><%= person.height_in_inches %></td>
         <td><%= person.awesome %></td>
         <td><%= person.created_at %></td>
+        <td><%= awesomeness %></td>
+        <td><%= irish_eyes %></td>
       </tr>
     <% end %>
   </tbody>
